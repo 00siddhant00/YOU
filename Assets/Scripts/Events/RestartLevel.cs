@@ -217,45 +217,13 @@ public class RestartLevel : MonoBehaviour
         //}
     }
 
-    public void gameOverRestart()
+    public IEnumerator g()
     {
         ScenesManager scenesManager = GameManager.Instance.sceneManager;
         scenesManager.Fade();
 
-        mainPlayer.transform.parent = null;
-        foreach (GameObject go in allLevelRef)
-        {
-            go.SetActive(false);
-        }
-
-        allLevelRef[currentLevel].SetActive(true);
-        mainPlayer.SetActive(true);
-        mainPlayer.transform.parent = allLevelRef[currentLevel].transform;
-
-
-        //Spawns Player to next gate position
-        mainPlayer.transform.position = allLevelRef[currentLevel].transform.Find("Spawn").position;
-        StartCoroutine(restartingLevel());
-
-
-        //LoadNExtLevel();
-    }
-
-    IEnumerator restartingLevel()
-    {
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-    }
-
-    IEnumerator LoadNExtLevel()
-    {
-        ScenesManager scenesManager = GameManager.Instance.sceneManager;
-        scenesManager.Fade();
-
-
-        yield return new WaitForSeconds(1f);
-        //print()
 
         mainPlayer.transform.parent = null;
         foreach (GameObject go in allLevelRef)
@@ -271,7 +239,48 @@ public class RestartLevel : MonoBehaviour
         //Spawns Player to next gate position
         mainPlayer.transform.position = allLevelRef[currentLevel].transform.Find("Spawn").position;
         //StartCoroutine(restartingLevel());
+
+        scenesManager.ChangeSectionConfiner(allLevelRef[currentLevel].transform.Find("Confiner").gameObject);
+        //LoadNExtLevel();
     }
+
+    IEnumerator restartingLevel()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+    }
+
+    public void gameOverRestart()
+    {
+        StartCoroutine(g());
+    }
+
+    //IEnumerator LoadNExtLevel()
+    //{
+    //    ScenesManager scenesManager = GameManager.Instance.sceneManager;
+    //    scenesManager.Fade();
+
+
+    //    yield return new WaitForSeconds(1f);
+    //    //print()
+
+    //    mainPlayer.transform.parent = null;
+    //    foreach (GameObject go in allLevelRef)
+    //    {
+    //        go.SetActive(false);
+    //    }
+
+    //    allLevelRef[currentLevel].SetActive(true);
+    //    mainPlayer.SetActive(true);
+    //    mainPlayer.transform.parent = allLevelRef[currentLevel].transform;
+
+
+    //    //Spawns Player to next gate position
+    //    mainPlayer.transform.position = allLevelRef[currentLevel].transform.Find("Spawn").position;
+    //    //StartCoroutine(restartingLevel());
+    //    scenesManager.ChangeSectionConfiner(allLevelRef[currentLevel]..transform.Find("Confiner").gameObject);
+    //}
 
     //IEnumerator restartingLevel()
     //{
