@@ -172,7 +172,6 @@ public class RestartLevel : MonoBehaviour
 
         scenesManager.ChangeSectionConfiner(allLevelRef[currentLevel].transform.Find("Confiner").gameObject);
 
-
         /*  if(currentLevel == 1 && DeathManager.instance.currentLevelDeath==0)
           {
               gameOverRestart();
@@ -184,10 +183,28 @@ public class RestartLevel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             PlayerPrefs.SetInt("CurrentLevel", 0);
-
+            SceneManager.LoadScene(1);
+            //StartCoroutine(restartingLevel()
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene(1);
+            //StartCoroutine(restartingLevel()
+        }
+        if (Input.GetKeyDown(KeyCode.N) && PlayerPrefs.GetInt("CurrentLevel") < allLevelRef.Length - 1)
+        {
+            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") + 1);
+            SceneManager.LoadScene(1);
+            //StartCoroutine(restartingLevel()
+        }
+        if (Input.GetKeyDown(KeyCode.B) && PlayerPrefs.GetInt("CurrentLevel") > 0)
+        {
+            PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel") - 1);
+            SceneManager.LoadScene(1);
+            //StartCoroutine(restartingLevel()
         }
     }
 
@@ -242,6 +259,7 @@ public class RestartLevel : MonoBehaviour
 
         scenesManager.ChangeSectionConfiner(allLevelRef[currentLevel].transform.Find("Confiner").gameObject);
         //LoadNExtLevel();
+        SceneManager.LoadScene(1);
     }
 
     IEnumerator restartingLevel()

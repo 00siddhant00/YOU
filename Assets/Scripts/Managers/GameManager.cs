@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public float gateSpawnDistance;
 
     [Header("System")]
+    public GameObject InfoEnable;
     public GameObject Info;
     bool infoToggle;
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F3))
         {
             infoToggle = !infoToggle;
+            InfoEnable.SetActive(!infoToggle);
             Info.SetActive(infoToggle);
         }
     }

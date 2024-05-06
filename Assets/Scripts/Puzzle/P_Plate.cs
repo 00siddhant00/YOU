@@ -5,13 +5,15 @@ public class P_Plate : PuzzleBase
     private Transform GFX;
     public P_Door pDoor;
 
+    public bool allowOpen = true;
+
     // Start is called before the first frame update
     void Start()
     {
         if (transform.childCount > 0)
             GFX = transform.GetChild(0);
         else Debug.LogWarning("GFX dosnt exist");
-
+         
         AddDoorToPlatesCheck();
     }
 
@@ -34,8 +36,9 @@ public class P_Plate : PuzzleBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            keyEnabled = true;
-            PressPlate(keyEnabled);
+            PressPlate(true);
+            if (allowOpen)
+                keyEnabled = true;
         }
     }
 
@@ -43,8 +46,10 @@ public class P_Plate : PuzzleBase
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            PressPlate(false);
+            if (!allowOpen) return;
+
             keyEnabled = false;
-            PressPlate(keyEnabled);
             pDoor.CloseDoor();
         }
     }

@@ -17,6 +17,7 @@ public class InputRecorder : MonoBehaviour
     public GameObject FxF;
     public GameObject FxP;
     public UnityEngine.UI.Image futureBar;
+    public UnityEngine.UI.Image presentBar;
 
     [Header("Future time variables")]
     public int noOfFutureTravel;
@@ -173,6 +174,23 @@ public class InputRecorder : MonoBehaviour
             FxF.SetActive(false);
             FxP.SetActive(true);
         }
+
+        //if (elapsedTimeInPresent >= goToSecsInFuture)
+        //{
+        //    presentBar.gameObject.SetActive(false);
+        //}
+
+        //if (elapsedTimeInFuture >= maxTimeInFuture)
+        //{
+        //    presentBar.gameObject.SetActive(true);
+        //}
+        if (elapsedTimeInPresent < goToSecsInFuture && elapsedTimeInPresent > 0)
+        {
+            presentBar.gameObject.SetActive(true);
+            presentBar.fillAmount = (elapsedTimeInPresent / goToSecsInFuture);
+            print("true");
+        }
+        else presentBar.gameObject.SetActive(false);
 
         if (elapsedTimeInPresent >= maxTimeInFuture + goToSecsInFuture + 0.7)
         {

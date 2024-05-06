@@ -11,6 +11,8 @@ public class Trigger : MonoBehaviour
         public GameObject obstical;
         public float delay;
     }
+    public Transform cannonSpawn;
+
     public Obsticals[] obsticals;
 
     void OnTriggerEnter2D(Collider2D col)
@@ -34,12 +36,12 @@ public class Trigger : MonoBehaviour
         }
         else if (obs.obstical.TryGetComponent<Bullet>(out Bullet bullet))
         {
-            obs.obstical.SetActive(true);
-            //bullet.TriggerBullet();
-
+            //obs.obstical.SetActive(true);
+            GameObject bulletPrefab = Instantiate(obs.obstical, cannonSpawn.position, Quaternion.identity);            //bullet.TriggerBullet();
+            bulletPrefab.SetActive(true);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
 }

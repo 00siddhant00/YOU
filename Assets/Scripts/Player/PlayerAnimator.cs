@@ -304,6 +304,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         if (startedJumping)
         {
+            FindObjectOfType<AudioManager>().Play("Jump");
             RumbleManager.instance.RumblePulse(0.01f, 0.01f, 0.04f);
             //RumbleManager.instance.RumblePulse(0.25f, 0.25f, 0.1f);
 
@@ -316,6 +317,7 @@ public class PlayerAnimator : MonoBehaviour
 
         if (justLanded)
         {
+            FindObjectOfType<AudioManager>().Play("Land");
             RumbleManager.instance.RumblePulse(0.7f, 0.1f, 0.055f);
             //RumbleManager.instance.RumblePulse(0.3f, 0.5f, 0.1f);
 
