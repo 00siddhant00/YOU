@@ -4,6 +4,8 @@ public class P_Plate : PuzzleBase
 {
     private Transform GFX;
     public P_Door pDoor;
+    public VisualTriggerLight[] vl;
+
 
     public bool allowOpen = true;
 
@@ -13,7 +15,7 @@ public class P_Plate : PuzzleBase
         if (transform.childCount > 0)
             GFX = transform.GetChild(0);
         else Debug.LogWarning("GFX dosnt exist");
-         
+
         AddDoorToPlatesCheck();
     }
 
@@ -34,16 +36,27 @@ public class P_Plate : PuzzleBase
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        FindObjectOfType<AudioManager>().Play("Plate");
         if (collision.gameObject.CompareTag("Player"))
         {
             PressPlate(true);
             if (allowOpen)
+            {
                 keyEnabled = true;
+                if (vl != null)
+                {
+                    foreach (var v in vl)
+                    {
+                        v.FadeTriggered(true);
+                    }
+                }
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        FindObjectOfType<AudioManager>().Play("Plate");
         if (collision.gameObject.CompareTag("Player"))
         {
             PressPlate(false);
@@ -51,6 +64,28 @@ public class P_Plate : PuzzleBase
 
             keyEnabled = false;
             pDoor.CloseDoor();
+            if (vl != null)
+                foreach (var v in vl)
+                {
+                    v.FadeTriggered(false);
+                }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PressPlate(true);
+            if (allowOpen)
+            {
+                keyEnabled = true;
+                if (vl != null)
+                    foreach (var v in vl)
+                    {
+                        v.FadeTriggered(true);
+                    }
+            }
         }
     }
 

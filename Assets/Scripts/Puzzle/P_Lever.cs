@@ -5,6 +5,8 @@ using UnityEngine;
 public class P_Lever : PuzzleBase
 {
     private Transform GFX;
+    public VisualTriggerLight[] vl;
+
     public P_Door pDoor;
 
     bool leverPulled;
@@ -42,6 +44,11 @@ public class P_Lever : PuzzleBase
         {
             keyEnabled = true;
             EnableLeaver();
+            if (vl != null)
+                foreach (var v in vl)
+                {
+                    v.FadeTriggered(true);
+                }
         }
     }
 

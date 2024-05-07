@@ -11,6 +11,8 @@ public class Trigger : MonoBehaviour
         public GameObject obstical;
         public float delay;
     }
+    public VisualTriggerLight[] vl;
+
     public Transform cannonSpawn;
 
     public Obsticals[] obsticals;
@@ -23,6 +25,11 @@ public class Trigger : MonoBehaviour
             {
                 StartCoroutine(SpawnSpike(ob));
             }
+        }
+        FindObjectOfType<AudioManager>().Play("Trig");
+        foreach (var v in vl)
+        {
+            v.FadeTriggered(true);
         }
     }
 

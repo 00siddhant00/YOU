@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public GameObject InfoEnable;
     public GameObject Info;
     bool infoToggle;
+    public bool controllerConnected = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,7 +41,34 @@ public class GameManager : MonoBehaviour
             InfoEnable.SetActive(!infoToggle);
             Info.SetActive(infoToggle);
         }
+
+        ControllerCheck();
     }
+
+    private void ControllerCheck()
+    {
+        // Check for any connected controllers
+        if (Gamepad.all.Count > 0)
+        {
+            controllerConnected = true;
+        }
+        else
+        {
+            controllerConnected = false;
+        }
+
+        // Use the 'controllerConnected' bool as needed
+        if (controllerConnected)
+        {
+            Debug.Log("A controller is connected.");
+        }
+        else
+        {
+            Debug.Log("No controller is connected.");
+        }
+    }
+
+
 
     public void TimeSlow(int slowAmount = 100, float forSec = 1)
     {

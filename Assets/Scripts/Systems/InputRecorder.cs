@@ -198,7 +198,7 @@ public class InputRecorder : MonoBehaviour
         }
 
         //if (Input.GetKeyDown(KeyCode.F))
-        if (PlayerInputHandler.Instance.AbilityActivate == 1)
+        if (PlayerInputHandler.Instance.AbilityActivate == 1 && RestartLevel.Instance.currentLevel >= 3)
         {
             PlayerInputHandler.Instance.AbilityActivate = 0;
 
