@@ -1,5 +1,7 @@
 # YOU - A Mind-Bending Puzzle Platformer
 
+  ![Main Thumbnile](Assets/Images/res/main.png)
+
 Harness the power of time travel to solve intricate, challenging puzzles!
 
 ## Features
@@ -8,6 +10,7 @@ Harness the power of time travel to solve intricate, challenging puzzles!
 * **Mind-bending Challenges:**  Put your puzzle-solving skills to the test in uniquely crafted levels.
 * **Intuitive Controls:** Play with a joystick or keyboard – your choice!
 * **Developer Mode:** Press F3 for more info and shortcuts to skip levels during testing.
+
 
 ## Controls
 
@@ -23,6 +26,8 @@ Harness the power of time travel to solve intricate, challenging puzzles!
 
 **Important Note:** Each time travel turn has a limited duration.
 
-## Get in Touch!
+- Time Leap: Press F (keyboard) or B (controller) to jump 4 seconds ahead. Act, then return to the present, 8 seconds in the past, and watch your past self mimic your future moves, shaping real-time puzzle solving.
+
+## Play YOU here!
 
 * [[Link to Play/Download](https://00sidd00.itch.io/you)]
