@@ -263,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
                 InputRecorder.i.calledFutureInstance = false;
                 InputRecorder.i.startTimeInPresent = 340282346638528859811704183484516925440.000000f;
                 InputRecorder.i.PlayerMultipleFutureInstancePos.Clear();
-                InputRecorder.i.jumpInputHistory.Clear();
+                //InputRecorder.i.jumpInputHistory.Clear();
                 InputRecorder.i.PlayerMultipleFutureInstanceChangeIndex = 0;
                 Destroy(gameObject);
             }

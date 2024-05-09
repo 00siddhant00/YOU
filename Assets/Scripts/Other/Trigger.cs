@@ -45,6 +45,7 @@ public class Trigger : MonoBehaviour
         {
             //obs.obstical.SetActive(true);
             GameObject bulletPrefab = Instantiate(obs.obstical, cannonSpawn.position, Quaternion.identity);            //bullet.TriggerBullet();
+            FindObjectOfType<AudioManager>().Play("Shoot");
             bulletPrefab.SetActive(true);
         }
 

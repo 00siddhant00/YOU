@@ -10,7 +10,12 @@ public class LedgeAssist : MonoBehaviour
     public float maxWallHeight = 0.5f;
     public float vaultSpeed = 0.1f;
     private float playerHeight = 2.5f;
+    private PlayerMovement playerMovement;
 
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+    }
 
     void Update()
     {
@@ -19,7 +24,7 @@ public class LedgeAssist : MonoBehaviour
 
     private void Vault()
     {
-        CheckDirection(GameManager.Instance.playerController.playerMovement.lookingRight ? vaultCheck.right : -vaultCheck.right);
+        CheckDirection(playerMovement.lookingRight ? vaultCheck.right : -vaultCheck.right);
     }
 
     private void CheckDirection(Vector2 direction)
@@ -67,8 +72,8 @@ public class LedgeAssist : MonoBehaviour
     {
         //Debug.DrawRay(vaultCheck.position, vaultCheck.right * vaultCheckLength, Color.blue);
         //Debug.DrawRay(vaultCheck.position, vaultCheck.right * -vaultCheckLength, Color.blue);
-
-        Debug.DrawRay(vaultCheck.position, vaultCheck.right * (GameManager.Instance.playerController.playerMovement.lookingRight ? vaultCheckLength : -vaultCheckLength), Color.blue);
+        if (GameManager.Instance != null)
+            Debug.DrawRay(vaultCheck.position, vaultCheck.right * (GameManager.Instance.playerController.playerMovement.lookingRight ? vaultCheckLength : -vaultCheckLength), Color.blue);
     }
 
     private void DrawCircle(Vector3 center, float radius, Color color, int segments)

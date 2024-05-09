@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
             Instantiate(bulletFx, transform.position, bulletFx.transform.rotation);
             GameManager.Instance.CameraShake.ShakeCamera(7f, 5f, 0.15f);
             RumbleManager.instance.RumblePulse(0.3f, 0.7f, 0.11f);
+            FindObjectOfType<AudioManager>().Play("BulletHit");
             Destroy(gameObject);
         }
     }

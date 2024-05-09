@@ -40,16 +40,16 @@ public class P_Plate : PuzzleBase
         if (collision.gameObject.CompareTag("Player"))
         {
             PressPlate(true);
+            if (vl != null)
+            {
+                foreach (var v in vl)
+                {
+                    v.FadeTriggered(true);
+                }
+            }
             if (allowOpen)
             {
                 keyEnabled = true;
-                if (vl != null)
-                {
-                    foreach (var v in vl)
-                    {
-                        v.FadeTriggered(true);
-                    }
-                }
             }
         }
     }
@@ -60,15 +60,15 @@ public class P_Plate : PuzzleBase
         if (collision.gameObject.CompareTag("Player"))
         {
             PressPlate(false);
-            if (!allowOpen) return;
-
-            keyEnabled = false;
-            pDoor.CloseDoor();
             if (vl != null)
                 foreach (var v in vl)
                 {
                     v.FadeTriggered(false);
                 }
+            if (!allowOpen) return;
+
+            keyEnabled = false;
+            pDoor.CloseDoor();
         }
     }
 

@@ -19,7 +19,8 @@ public class VisualTriggerLight : MonoBehaviour
     {
         if (onFade)
         {
-            light.SetActive(true);
+            if (light != null)
+                light.SetActive(true);
             foreach (var spriteR in spritesR)
             {
                 spriteR.color = high;
@@ -27,7 +28,8 @@ public class VisualTriggerLight : MonoBehaviour
         }
         else
         {
-            light.SetActive(false);
+            if (light != null)
+                light.SetActive(false);
             foreach (var spriteR in spritesR)
             {
                 spriteR.color = low;

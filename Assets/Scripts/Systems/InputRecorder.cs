@@ -192,7 +192,7 @@ public class InputRecorder : MonoBehaviour
         }
         else presentBar.gameObject.SetActive(false);
 
-        if (elapsedTimeInPresent >= maxTimeInFuture + goToSecsInFuture + 0.7)
+        if (elapsedTimeInPresent >= maxTimeInFuture + goToSecsInFuture + 1d)
         {
             ResetFutureInstanceConfig();
         }
@@ -229,6 +229,7 @@ public class InputRecorder : MonoBehaviour
 
                 // Remove the PlayerMovement component
                 Destroy(playerFutureInstanceInFuture.GetComponent<PlayerMovement>());
+                Destroy(playerFutureInstanceInFuture.GetComponent<LedgeAssist>());
                 Destroy(playerFutureInstanceInFuture.transform.GetChild(1).gameObject);
                 //Destroy(playerFutureInstanceInFuture.GetComponent<PlayerCombat>());
                 Destroy(playerFutureInstanceInFuture.GetComponent<PlayerAnimator>());

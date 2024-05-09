@@ -23,6 +23,11 @@ public class GameManager : MonoBehaviour
     public GameObject InfoEnable;
     public GameObject Info;
     bool infoToggle;
+
+
+    [Header("Controller")]
+    public GameObject KeyboardInfo;
+    public GameObject ControllerInfo;
     public bool controllerConnected = false;
 
     // Start is called before the first frame update
@@ -30,6 +35,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         playerController = FindObjectOfType<PlayerController>();
+        ControllerInfo.SetActive(true);
+        KeyboardInfo.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        RumbleManager.instance.RumblePulse(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -60,10 +72,17 @@ public class GameManager : MonoBehaviour
         // Use the 'controllerConnected' bool as needed
         if (controllerConnected)
         {
+            if (RestartLevel.Instance.currentLevel == 3)
+            {
+                ControllerInfo.SetActive(true);
+                KeyboardInfo.SetActive(false);
+            }
             Debug.Log("A controller is connected.");
         }
         else
         {
+            ControllerInfo.SetActive(false);
+            KeyboardInfo.SetActive(true);
             Debug.Log("No controller is connected.");
         }
     }
